@@ -1,0 +1,74 @@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model MyApp.Namespace.UserData
+@{
+}
+<!DOCTYPE html>
+<html class="h-100" lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>ユーザー追加</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/style/cover.css" rel="stylesheet">
+  <link href="/style/floating-labels.css" rel="stylesheet">
+  <link href="/style/examples.css" rel="stylesheet">
+  <link href="/style/style.css" rel="stylesheet">
+</head>
+<body class="d-flex h-100 text-center text-bg-light">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0"></h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="text-decoration-none py-1 px-4" href="/User/" aria-current="page">ユーザー一覧</a>
+        <a class="text-decoration-none py-1 px-0" href="/Home/Logout" aria-current="page">ログアウト</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="px-3">
+    <h2>ユーザーマスタ 編集</h2>
+    @if (String.IsNullOrEmpty(ViewBag.message)) {
+      <p class="text-secondary" role="alert">ユーザーマスターに新規ユーザーを追加します。</p>
+    } else {
+      <p class="text-danger">@ViewBag.message</p>
+    }
+
+    <form class="form-signin" action="/User/Register" method="post">
+      <div class="row form-label-group">
+        <div class="col-4 text-start">ユーザーID</div>
+        <div class="col form-control">@Model.UserId</div>
+      </div>
+
+      <div class="form-label-group">
+        <input value="@Model.UserName" type="text" id="unm" name="UserName" class="form-control" placeholder="ユーザー名" required="" autofocus="">
+        <label for="unm">ユーザー名</label>
+      </div>
+
+      <div class="form-label-group">
+        <input value="@Model.MailAddress" type="email" id="mail" name="MailAddress" class="form-control" placeholder="メールアドレス" required="" autofocus="">
+        <label for="mail">メールアドレス</label>
+      </div>
+
+      <div class="form-label-group">
+        <input value="@Model.No" type="hidden" name="No">
+        <input value="@Model.UserId" type="hidden" name="UserId">
+        <button class="form-control btn btn-lg btn-primary btn-block" type="submit">登録する</button>
+      </div>
+
+    </form>
+  </main>
+
+  <footer class="mt-auto text-white-50">
+    <p>This sample use that Cover template of <a target="_blank" href="https://getbootstrap.com/" class="text-white">Bootstrap</a>.</p>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
